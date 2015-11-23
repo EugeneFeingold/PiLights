@@ -26,6 +26,7 @@ def handleColor(hex_color):
     return "ok"
 
 
+@app.route("/rainbow")
 @app.route("/rainbow/<int:msDelay>")
 def handleRainbow(msDelay = 20):
     global thread
