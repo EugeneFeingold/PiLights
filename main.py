@@ -1,11 +1,11 @@
 from flask import Flask
 from light import Light
-import threading
+from multiprocessing import Process
 
 app = Flask(__name__)
 
 
-thread = None
+process = None
 light = Light()
 
 
@@ -17,12 +17,14 @@ def main():
 
 @app.route("/color/<hex_color>")
 def handleColor(hex_color):
-    global thread
+    global process
     light.killme()
+    if not process is None:
+        process.terminate()
 
-    thread = threading.Thread(target = light.setAll, args = [hex_color])
-    thread.daemon = True
-    thread.start()
+    process = Process(target = light.setAll, args = [hex_color])
+    process.daemon = True
+    process.start()
 
     return "ok"
 
@@ -30,12 +32,14 @@ def handleColor(hex_color):
 @app.route("/rainbow")
 @app.route("/rainbow/<int:msDelay>")
 def handleRainbow(msDelay = 20):
-    global thread
+    global process
     light.killme()
+    if not process is None:
+        process.terminate()
 
-    thread = threading.Thread(target = light.rainbowCycle, args = [msDelay])
-    thread.daemon = True
-    thread.start()
+    process = Process(target = light.rainbowCycle, args = [msDelay])
+    process.daemon = True
+    process.start()
 
     return "ok"
 
