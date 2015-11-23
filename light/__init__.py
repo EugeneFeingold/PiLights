@@ -22,7 +22,7 @@ class Light(object):
 
     def setAll(self, hexColor):
         for i in range(0, LED_COUNT):
-            strip.setPixelColor(i, Color(hexColor))
+            strip.setPixelColor(i, ColorStr(hexColor))
         strip.show()
 
 

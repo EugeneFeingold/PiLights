@@ -3,8 +3,15 @@
 import _rpi_ws281x as ws
 
 
-def Color(hexCode):
-	return Color(hex_to_rgb(hexCode))
+def ColorStr(colorstring):
+    colorstring = colorstring.strip()
+    if colorstring[0] == '#': colorstring = colorstring[1:]
+    if len(colorstring) != 6:
+        raise ValueError, "input #%s is not in #RRGGBB format" % colorstring
+    r, g, b = colorstring[:2], colorstring[2:4], colorstring[4:]
+    r, g, b = [int(n, 16) for n in (r, g, b)]
+    return Color(r, g, b)
+
 
 def Color(red, green, blue):
 	"""Convert the provided red, green, blue color to a 24-bit color value.
@@ -13,11 +20,6 @@ def Color(red, green, blue):
 	"""
 	return (red << 16) | (green << 8) | blue
 
-
-def hex_to_rgb(value):
-    value = value.lstrip('#')
-    lv = len(value)
-    return tuple(int(value[i:i + lv // 3], 16) for i in range(0, lv, lv // 3))
 
 
 
