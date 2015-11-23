@@ -1,5 +1,5 @@
 import time
-from random import random
+from random import random, randint
 
 from neopixel import *
 
@@ -59,12 +59,12 @@ class Light(object):
     def chaser(self, wait_ms=20):
         self.isKilled = False
         while True:
-            j = random(255)
+            j = randint(0,255)
             for i in range(self.strip.numPixels()):
                 self.reset()
                 for k in range(i, i + 5):
                     if (k < self.strip.numPixels()):
-                        self.strip.setPixelColor(i, self.wheel(j))
+                        self.strip.setPixelColor(k, self.wheel(j))
                 self.strip.show()
                 if self.isKilled:
                     return
