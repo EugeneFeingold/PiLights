@@ -47,5 +47,21 @@ def handleRainbow(msDelay = 20):
 
 
 
+@app.route("/rainbowAll")
+@app.route("/rainbowAll/<int:msDelay>")
+def handleRainbowAll(msDelay = 20):
+    global process
+    light.killme()
+    if not process is None:
+        process.terminate()
+
+    process = Process(target = light.rainbowCycleAll, args = [msDelay])
+    process.daemon = True
+    process.start()
+
+    return "ok"
+
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80, debug=True)
