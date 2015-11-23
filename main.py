@@ -15,12 +15,12 @@ def main():
     return "Hello World!"
 
 
-@app.route("/color/<hexColor>")
-def handleColor(hexColor):
+@app.route("/color/<hex_color>")
+def handleColor(hex_color):
     global thread
     light.killme()
 
-    thread = threading.Thread(target = light.setAll, args = (hexColor))
+    thread = threading.Thread(target = light.setAll, args = (str(hex_color)))
     thread.start()
 
     return "ok"
