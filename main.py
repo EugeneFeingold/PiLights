@@ -26,12 +26,15 @@ def handleColor(hex_color):
     return "ok"
 
 
+@app.route("/rainbow/<int:msDelay>")
+def handleRainbow(msDelay = 20):
+    global thread
+    light.killme()
 
+    thread = threading.Thread(target = light.rainbowCycle, args = [msDelay])
+    thread.start()
 
-
-
-
-
+    return "ok"
 
 
 
