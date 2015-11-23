@@ -20,7 +20,7 @@ def handleColor(hexColor):
     global thread
     light.killme()
 
-    thread = threading.Thread(target = light.setAll, args = hexColor)
+    thread = threading.Thread(target = light.setAll, args = (hexColor))
     thread.start()
 
     return "ok"
