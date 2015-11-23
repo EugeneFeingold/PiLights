@@ -57,5 +57,8 @@ class Light(object):
         self.strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
         # Intialize the library (must be called once before other functions).
         self.strip.begin()
+        for i in range(0, LED_COUNT):
+            self.strip.setPixelColor(i, Color(0, 0, 0))
+        self.strip.show()
         self.isKilled = False
 
