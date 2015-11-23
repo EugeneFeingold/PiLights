@@ -28,16 +28,17 @@ class Light(object):
 
     def rainbowCycle(self, wait_ms=20, iterations=5):
         self.isKilled = False
-        """Draw rainbow that uniformly distributes itself across all pixels."""
-        for j in range(256*iterations):
-            for i in range(self.strip.numPixels()):
-                self.strip.setPixelColor(i, self.wheel(((i * 256 / self.strip.numPixels()) + j) & 255))
-            self.strip.show()
-            if self.isKilled:
-                return
-            time.sleep(wait_ms/1000.0)
-            if self.isKilled:
-                return
+        while True:
+            """Draw rainbow that uniformly distributes itself across all pixels."""
+            for j in range(256*iterations):
+                for i in range(self.strip.numPixels()):
+                    self.strip.setPixelColor(i, self.wheel(((i * 256 / self.strip.numPixels()) + j) & 255))
+                self.strip.show()
+                if self.isKilled:
+                    return
+                time.sleep(wait_ms/1000.0)
+                if self.isKilled:
+                    return
 
 
 
