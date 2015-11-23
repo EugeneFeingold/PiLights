@@ -46,7 +46,7 @@ class Light(object):
         while True:
             for j in range(256):
                 for i in range(self.strip.numPixels()):
-                    self.strip.setPixelColor(i, self.wheel(j) & 255)
+                    self.strip.setPixelColor(i, self.wheel(j))
                 self.strip.show()
                 if self.isKilled:
                     return
