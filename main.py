@@ -19,8 +19,6 @@ def main():
 def handleColor(hex_color):
     global thread, light
     light.killme()
-    if not thread is None:
-        thread.join()
     light = Light()
 
     thread = threading.Thread(target = light.setAll, args = [hex_color])
@@ -34,8 +32,6 @@ def handleColor(hex_color):
 def handleRainbow(msDelay = 20):
     global thread, light
     light.killme()
-    if not thread is None:
-        thread.join()
     light = Light()
 
     thread = threading.Thread(target = light.rainbowCycle, args = [msDelay])
