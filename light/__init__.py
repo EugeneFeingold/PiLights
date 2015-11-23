@@ -12,18 +12,18 @@ LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
 LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
 
 
-global strip
-isKilled = False
+
 
 class Light(object):
     def killme(self):
-        isKilled = True
+        self.isKilled = True
 
 
     def setAll(self, hexColor):
+
         for i in range(0, LED_COUNT):
-            strip.setPixelColor(i, ColorStr(hexColor))
-        strip.show()
+            self.strip.setPixelColor(i, ColorStr(hexColor))
+        self.strip.show()
 
 
 
@@ -31,7 +31,8 @@ class Light(object):
 
     def __init__(self):
         # Create NeoPixel object with appropriate configuration.
-        strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
+        self.strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
         # Intialize the library (must be called once before other functions).
-        strip.begin()
+        self.strip.begin()
+        self.isKilled = False
 
