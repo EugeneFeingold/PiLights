@@ -40,7 +40,7 @@ class Light(object):
 
 
 
-    def wheel(pos):
+    def wheel(self, pos):
         """Generate rainbow colors across 0-255 positions."""
         if pos < 85:
             return Color(pos * 3, 255 - pos * 3, 0)
