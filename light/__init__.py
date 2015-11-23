@@ -21,12 +21,13 @@ class Light(object):
 
 
     def setAll(self, hexColor):
-
+        self.isKilled = False
         for i in range(0, LED_COUNT):
             self.strip.setPixelColor(i, ColorStr(hexColor))
         self.strip.show()
 
     def rainbowCycle(self, wait_ms=20, iterations=5):
+        self.isKilled = False
         """Draw rainbow that uniformly distributes itself across all pixels."""
         for j in range(256*iterations):
             for i in range(self.strip.numPixels()):
