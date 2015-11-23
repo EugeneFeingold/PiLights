@@ -21,6 +21,7 @@ def handleColor(hexColor):
     light.killme()
 
     thread = threading.Thread(target = light.setAll, args = hexColor)
+    thread.start()
 
     return "ok"
 
