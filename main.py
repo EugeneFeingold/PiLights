@@ -21,6 +21,7 @@ def handleColor(hex_color):
     light.killme()
 
     thread = threading.Thread(target = light.setAll, args = [hex_color])
+    thread.daemon = True
     thread.start()
 
     return "ok"
@@ -33,6 +34,7 @@ def handleRainbow(msDelay = 20):
     light.killme()
 
     thread = threading.Thread(target = light.rainbowCycle, args = [msDelay])
+    thread.daemon = True
     thread.start()
 
     return "ok"
