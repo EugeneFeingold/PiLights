@@ -17,8 +17,10 @@ def main():
 
 @app.route("/color/<hex_color>")
 def handleColor(hex_color):
-    global thread
+    global thread, light
     light.killme()
+    thread.join()
+    light = Light()
 
     thread = threading.Thread(target = light.setAll, args = [hex_color])
     thread.start()
@@ -29,8 +31,10 @@ def handleColor(hex_color):
 @app.route("/rainbow")
 @app.route("/rainbow/<int:msDelay>")
 def handleRainbow(msDelay = 20):
-    global thread
+    global thread, light
     light.killme()
+    thread.join()
+    light = Light()
 
     thread = threading.Thread(target = light.rainbowCycle, args = [msDelay])
     thread.start()
