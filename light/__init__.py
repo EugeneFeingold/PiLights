@@ -55,6 +55,27 @@ class Light(object):
                     return
 
 
+    def chaser(self, wait_ms=20):
+        self.isKilled = False
+        while True:
+            for j in range(256):
+                for i in range(self.strip.numPixels()):
+                    if i > 0:
+                        self.strip.setPixelColor(i - 1, 0)
+                    else:
+                        self.strip.setPixelColor(self.strip.numPixels()-1, 0)
+                    self.strip.setPixelColor(i, self.wheel(j))
+                    self.strip.show()
+                    if self.isKilled:
+                        return
+                    time.sleep(wait_ms/1000.0)
+                    if self.isKilled:
+                        return
+
+
+
+
+
     def wheel(self, pos):
         """Generate rainbow colors across 0-255 positions."""
         if pos < 85:
