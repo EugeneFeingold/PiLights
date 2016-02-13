@@ -19,7 +19,7 @@ currentState = {
 @app.route("/")
 def main():
     return render_template('index.html',
-                           hex_color=currentState.color
+                           hex_color=currentState["color"]
                            )
 
 
@@ -42,7 +42,7 @@ def startLight(target, args):
 
 @app.route("/color/<hex_color>")
 def handleColor(hex_color):
-    currentState.color = hex_color
+    currentState["color"] = hex_color
     return startLight(light.setAll, [hex_color])
 
 
