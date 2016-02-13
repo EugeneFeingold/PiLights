@@ -66,11 +66,12 @@ def handleChaser(msDelay=20):
 
 
 @app.route('/scripts/<path:path>')
-def send_js(path):
+def send_scripts(path):
     return send_from_directory('scripts', path)
 
+
 @app.route('/css/<path:path>')
-def send_js(path):
+def send_css(path):
     return send_from_directory('css', path)
 
 if __name__ == "__main__":
