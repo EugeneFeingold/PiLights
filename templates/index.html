@@ -16,13 +16,14 @@
 
 
     <script>
-        $("#solidColor").spectrum({
-            color: "#{{ hex_color }}",
-            change: function(color) {
-                $.ajax({ url: "/color/" + color.toHexString().slice(1) });
-            }
+        $(function () {
+            $("#solidColor").spectrum({
+                color: "#{{ hex_color }}",
+                change: function(color) {
+                    $.ajax({ url: "/color/" + color.toHexString().slice(1) });
+                }
+            });
         });
-
 
     </script>
 
