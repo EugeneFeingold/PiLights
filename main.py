@@ -37,7 +37,7 @@ def startLight(target, args):
     process.daemon = True
     process.start()
 
-    return "Started " + target
+    return "ok"
 
 
 @app.route("/color/<hex_color>")
