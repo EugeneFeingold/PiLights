@@ -2,7 +2,7 @@
 
 from multiprocessing import Process
 
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 
 from light import Light
 
@@ -63,6 +63,15 @@ def handleRainbowAll(msDelay=20):
 def handleChaser(msDelay=20):
     return startLight(light.chaser, [msDelay])
 
+
+
+@app.route('/scripts/<path:path>')
+def send_js(path):
+    return send_from_directory('scripts', path)
+
+@app.route('/css/<path:path>')
+def send_js(path):
+    return send_from_directory('css', path)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80, debug=True)
