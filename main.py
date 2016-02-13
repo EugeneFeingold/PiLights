@@ -64,15 +64,5 @@ def handleChaser(msDelay=20):
     return startLight(light.chaser, [msDelay])
 
 
-
-@app.route('/scripts/<path:path>')
-def send_scripts(path):
-    return send_from_directory('scripts', path)
-
-
-@app.route('/css/<path:path>')
-def send_css(path):
-    return send_from_directory('css', path)
-
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80, debug=True)
