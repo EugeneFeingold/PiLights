@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from flask import Flask
+from flask import Flask, render_template
 from light import Light
 from multiprocessing import Process
 
@@ -10,18 +10,26 @@ app = Flask(__name__)
 process = None
 light = Light()
 
+currentState = {}
+
 
 
 @app.route("/")
 def main():
-    return "Hello World!"
+    return render_template('index.html',
+                           hex_color = currentState.color
+                           )
 
 
 def startLight(target, args):
     global process
-    light.killme()
+    if not light is None:
+        light.killme()
     if not process is None:
-        process.terminate()
+        try:
+            process.terminate()
+        except:
+            print "error terminating process"
 
     process = Process(target = target, args = args)
     process.daemon = True
@@ -32,6 +40,7 @@ def startLight(target, args):
 
 @app.route("/color/<hex_color>")
 def handleColor(hex_color):
+    currentState.color = hex_color
     return startLight(light.setAll, [hex_color])
 
 

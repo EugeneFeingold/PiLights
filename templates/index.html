@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>PiLights</title>
+
+
+    <script src="scripts/spectrum.js"></script>
+    <script src="scripts/jquery-1.12.0.min.js"/>
+    <link rel="stylesheet" href="css/spectrum.css"/>
+
+
+    <style>
+        .full-spectrum .sp-palette {
+        max-width: 200px;
+        }
+
+    </style>
+
+
+    <script>
+        $("#solidColor").spectrum({
+            color: "#{{ hex_color }}",
+            change: function(color) {
+                $.ajax({ url: "/color/" + color.toHexString().slice(1) });
+            }
+        });
+
+
+    </script>
+
+
+</head>
+
+<body>
+
+Solid color: <input type='text' id="solidColor"/>
+
+</body>
+
+</html>
